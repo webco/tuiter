@@ -51,7 +51,7 @@ def spec
     s.files = spec_files
 
     # Dependencies
-    # s.add_dependency "dependency"
+    s.add_dependency "json"
   end
 end
 
