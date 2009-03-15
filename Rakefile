@@ -4,6 +4,8 @@ require "rake"
 require "rake/testtask"
 require "rake/rdoctask"
 
+require "lib/tuiter/version"
+
 desc "Run test suite"
 Rake::TestTask.new do |t|
   t.libs << "test"
