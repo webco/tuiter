@@ -5,8 +5,8 @@ Tuiter was design and developed by Manoel Lemos (manoel@lemos.net), to provide a
 # Basic Usage #
 
     require 'tuiter'
-    tuiter = Tuiter::Client.new(:username => '<twitter_login>', :password => '<twitter_pwd>')
-    tuiter.update('Hey Ho, Twitters!')
+    client = Tuiter::Client.new(:username => '<twitter_login>', :password => '<twitter_pwd>')
+    client.update('Hey Ho, Twitters!')
 
 # Current Status #
 
