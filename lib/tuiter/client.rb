@@ -1,21 +1,13 @@
-require 'open-uri'
-require 'uri'
-require 'net/http'
-require 'json'
-require 'logger'
-
 module Tuiter
 
-  # TUITER_CONFIG = YAML::load(File.open("#{RAILS_ROOT}/config/tuiter.yml"))[RAILS_ENV]
-  
   class Client
     attr_accessor :username, :password
     
     def initialize(options = {})
       @pid = Process.pid
-      @logger = options[:logger] || Logger.new('tuiter.log') #Logger.new("#{RAILS_ROOT}/log/tuiter.log")
-      @username = options[:username] # || TUITER_CONFIG['username']
-      @password = options[:password] # || TUITER_CONFIG['password']
+      @logger = options[:logger] || Logger.new('tuiter.log')
+      @username = options[:username]
+      @password = options[:password]
       log("initialize()")
     end
     
