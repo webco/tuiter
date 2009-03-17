@@ -1,6 +1,8 @@
 *~
 *.swp
 *.log
+*.gem
+*.gemspec
 .DS_Store
 
 /coverage
