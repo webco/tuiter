@@ -2,7 +2,7 @@
 # RUN : 'rake gem:update_gemspec'
 
 Gem::Specification.new do |s|
- s.date = "Tue Mar 17 15:05:45 -0300 2009"
+ # s.date = "Tue Mar 17 15:56:11 -0300 2009"
  s.authors = ["Manoel Lemos", "WebCo Internet"]
  s.require_paths = ["lib"]
  s.required_rubygems_version = ">= 0"
