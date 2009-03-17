@@ -37,7 +37,7 @@ task "list" do
 end
 
 def spec_files
-  %w( Rakefile ) + Dir["{lib,test}/**/*"]
+  %w( Rakefile AUTHORS CHANGELOG LICENSE README.markdown ) + Dir["{lib,examples,test}/**/*"]
 end
 
 def spec
@@ -46,20 +46,20 @@ def spec
     s.version = Tuiter::VERSION::STRING 
     s.summary = "Yet another Twitter API wrapper library in Ruby"
     s.authors = ["Manoel Lemos", "WebCo Internet"]
-    s.email = ["manoel@lemos.net", "no-reply@webcointernet.com"]
+    s.email = "opensource@webcointernet.com"
     s.homepage = "http://github.com/webco/tuiter"
     s.description = "Yet another Twitter API wrapper library in Ruby"
     s.has_rdoc = false
     s.files = spec_files
 
     # Dependencies
-    s.add_dependency "json"
+    s.add_dependency "json", ">= 1.1"
   end
 end
 
 desc "Creates the gemspec"
 task "gemify" do
-  skip_fields = %w(new_platform original_platform specification_version loaded required_ruby_version rubygems_version platform )
+  skip_fields = %w(new_platform original_platform specification_version loaded required_ruby_version rubygems_version platform bindir )
 
   result = "# WARNING : RAKE AUTO-GENERATED FILE. DO NOT MANUALLY EDIT!\n"
   result << "# RUN : 'rake gem:update_gemspec'\n\n"
