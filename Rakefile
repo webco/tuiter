@@ -37,7 +37,7 @@ task "list" do
 end
 
 def spec_files
-  %w( Rakefile AUTHORS CHANGELOG LICENSE README.markdown ) + Dir["{lib,examples,test}/**/*"]
+  %w( Rakefile AUTHORS CHANGELOG LICENSE README.rdoc ) + Dir["{lib,examples,test}/**/*"]
 end
 
 def spec
@@ -50,6 +50,8 @@ def spec
     s.homepage = "http://github.com/webco/tuiter"
     s.description = "Yet another Twitter API wrapper library in Ruby"
     s.has_rdoc = false
+    # s.extra_rdoc_files = ["LICENSE", "README.rdoc", "CHANGELOG"]
+    # s.rdoc_options = ["--inline-source", "--charset=utf-8"]
     s.files = spec_files
 
     # Dependencies
@@ -61,14 +63,14 @@ desc "Creates the gemspec"
 task "gemify" do
   skip_fields = %w(new_platform original_platform specification_version loaded required_ruby_version rubygems_version platform bindir )
 
-  result = "# WARNING : RAKE AUTO-GENERATED FILE. DO NOT MANUALLY EDIT!\n"
-  result << "# RUN : 'rake gem:update_gemspec'\n\n"
+  result = "# WARNING: RAKE AUTO-GENERATED FILE. DO NOT MANUALLY EDIT!\n"
+  result << "# RUN: 'rake gemify'\n\n"
   result << "Gem::Specification.new do |s|\n"
 
   spec.instance_variables.each do |ivar|
     value = spec.instance_variable_get(ivar)
     name = ivar.split("@").last
-    value = Time.now if name == "date"
+    value = Date.today.to_s if name == "date"
 
     next if skip_fields.include?(name) || value.nil? || value == "" || (value.respond_to?(:empty?) && value.empty?)
     if name == "dependencies"
@@ -76,6 +78,8 @@ task "gemify" do
         dep, *ver = d.to_s.split(" ")
         result << " s.add_dependency #{dep.inspect}, #{ver.join(" ").inspect.gsub(/[()]/, "").gsub(", runtime", "")}\n"
       end
+    elsif name == "required_rubygems_version"
+      result << " s.required_rubygems_version = Gem::Requirement.new(\">= 0\") if s.respond_to? :required_rubygems_version=\n"
     else
       case value
       when Array
@@ -91,7 +95,7 @@ task "gemify" do
       result << " s.#{name} = #{value}\n"
     end
   end
-
+  
   result << "end"
   File.open(File.join(File.dirname(__FILE__), "#{spec.name}.gemspec"), "w"){|f| f << result}
 end

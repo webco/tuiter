@@ -1,17 +1,17 @@
-# WARNING : RAKE AUTO-GENERATED FILE. DO NOT MANUALLY EDIT!
-# RUN : 'rake gem:update_gemspec'
+# WARNING: RAKE AUTO-GENERATED FILE. DO NOT MANUALLY EDIT!
+# RUN: 'rake gemify'
 
 Gem::Specification.new do |s|
- # s.date = "Tue Mar 17 15:56:11 -0300 2009"
+ s.date = "2009-03-17"
  s.authors = ["Manoel Lemos", "WebCo Internet"]
  s.require_paths = ["lib"]
- s.required_rubygems_version = ">= 0"
+ s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
  s.has_rdoc = false
  s.files = ["Rakefile",
  "AUTHORS",
  "CHANGELOG",
  "LICENSE",
- "README.markdown",
+ "README.rdoc",
  "lib/tuiter",
  "lib/tuiter/client.rb",
  "lib/tuiter/data",

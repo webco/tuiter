@@ -6,15 +6,11 @@
 
 /coverage
 /config/*.yml
-/db/schema.rb
-/db/*.sqlite3
 
 /doc/*doc
 
 /log/*
 /logs/*
-
-/index
 /tmp/*
 
 /nbproject
