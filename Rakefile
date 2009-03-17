@@ -44,11 +44,11 @@ def spec
   spec = Gem::Specification.new do |s|
     s.name = "tuiter"
     s.version = Tuiter::VERSION::STRING 
-    s.summary = "A better Twitter API library for the Ruby world"
+    s.summary = "Yet another Twitter API wrapper library in Ruby"
     s.authors = ["Manoel Lemos", "WebCo Internet"]
     s.email = ["manoel@lemos.net", "no-reply@webcointernet.com"]
     s.homepage = "http://github.com/webco/tuiter"
-    s.description = "A better Twitter API library for Ruby"
+    s.description = "Yet another Twitter API wrapper library in Ruby"
     s.has_rdoc = false
     s.files = spec_files
 
