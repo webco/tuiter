@@ -8,6 +8,7 @@ module Tuiter
       @logger = options[:logger] || Logger.new('tuiter.log')
       @username = options[:username]
       @password = options[:password]
+      @use_proxy = setup_a_proxy?
       log("initialize()")
     end
     
@@ -17,7 +18,7 @@ module Tuiter
       req = Net::HTTP::Post.new(url.path)
       req.basic_auth @username, @password
       req.set_form_data({'status'=>status, 'in_reply_to_status_id'=>in_reply_to_status_id })
-      res = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
+      res = new_http_for(url).start {|http| http.request(req) }
       case res
       when Net::HTTPSuccess, Net::HTTPRedirection
         log("update() success: OK")
@@ -34,7 +35,7 @@ module Tuiter
       req = Net::HTTP::Post.new(url.path)
       req.basic_auth @username, @password
       req.set_form_data({'user'=>user, 'text'=>text })
-      res = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
+      res = new_http_for(url).start {|http| http.request(req) }
       case res
       when Net::HTTPSuccess, Net::HTTPRedirection
         log("direct_new() success: OK")
@@ -51,7 +52,7 @@ module Tuiter
       req = Net::HTTP::Post.new(url.path)
       req.basic_auth @username, @password
       req.set_form_data({'follow'=>"true"}) if follow
-      res = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
+      res = new_http_for(url).start {|http| http.request(req) }
       case res
       when Net::HTTPSuccess, Net::HTTPRedirection
         log("friendship_new() success: OK")
@@ -177,7 +178,29 @@ module Tuiter
     rescue Exception => e
       log("request() error: #{e.message} in #{e.backtrace.first.to_s}")
       return nil
-    end  
+    end
+    
+    def setup_a_proxy?
+      http_proxy = ENV['http_proxy'] || ENV['HTTP_PROXY'] || nil
+      
+      if http_proxy
+        proxy = URI.parse(http_proxy)
+
+        @proxy_host = proxy.host
+        @proxy_port = proxy.port
+        @proxy_user, @proxy_pass = proxy.userinfo.split(/:/) if proxy.userinfo
+      end
+    
+      http_proxy != nil
+    end
+    
+    def new_http_for(url)
+      if @use_proxy
+        http = Net::HTTP.new(url.host, url.port, @proxy_host, @proxy_port, @proxy_user, @proxy_pass)
+      else
+        http = Net::HTTP.new(url.host, url.port)
+      end
+    end
 
     def log(message)
       @logger.info "[Tuiter:#{@pid}] #{Time.now.to_s} : #{message}"
