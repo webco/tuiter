@@ -1,16 +1,31 @@
 = Tuiter
 
-Tuiter was design and developed by {Manoel Lemos}[http://manoellemos.com] to provide access to the Twitter API. It was developed for the experimental project called {Tuitersfera Brasil}[http://tuitersfera.com.br], an application to monitor the Twitter usage in Brazil.
+Tuiter was design and developed by {Manoel Lemos}[http://manoellemos.com] to
+provide access to the Twitter API. It was developed for the experimental
+project called {Tuitersfera Brasil}[http://tuitersfera.com.br], an application
+to monitor the Twitter usage in Brazil.
 
-Both Tuiter and Tuitersfera were adopted, further developed and maintained by {Webco Internet}[http://webcointernet.com].
+Both Tuiter and Tuitersfera were adopted, further developed and maintained by
+{Webco Internet}[http://webcointernet.com].
 
 == Instalation
 
-A tuiter gem is avaliable in Github. To install simply run on a console:
+Tuiter is avaliable as a gem on 
+{Rubyforge}[http://rubyforge.org/projects/tuiter/], so you can easily install
+using rubygems:
+
+    gem install tuiter
+
+Although it is recommended to use the gem published on Rubyforge, tuiter is also
+avaliable at Github. This might be useful if you want to experiment with forks
+or live on the bleeding edge. 
+
+To install the Github version, simply run on a console:
 
     gem install webco-utils --source=http://gems.github.com
 
-If you already have Github gem repository on you gem source, you can leave the source part out.
+If you already have Github gem repository on you gem source, you can leave the
+source part out.
 
 == Basic Usage
 
@@ -19,9 +34,11 @@ If you already have Github gem repository on you gem source, you can leave the s
     
     client.update('Hey Ho, Twitters!')
 
-There are (or at least we pretend to add :-) another examples in the examples/ folder.
+There are (or at least we pretend to add :-) another examples in the examples/ 
+folder.
 
 == Roadmap and TO-DO list
 
-Check out the library roadmap and to-do list {in the wiki}[http://wiki.github.com/webco/tuiter]
+Check out the library roadmap and to-do list
+{in the project wiki}[http://wiki.github.com/webco/tuiter]
 
