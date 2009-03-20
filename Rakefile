@@ -53,6 +53,7 @@ def spec
     # s.extra_rdoc_files = ["LICENSE", "README.rdoc", "CHANGELOG"]
     # s.rdoc_options = ["--inline-source", "--charset=utf-8"]
     s.files = spec_files
+    s.rubyforge_project = "tuiter"
 
     # Dependencies
     s.add_dependency "json", ">= 1.1"
@@ -108,6 +109,19 @@ end
 desc "Install the gem locally"
 task "install" => "build" do
   sh "gem install #{spec.name}-#{spec.version}.gem && rm -r *.gem *.gemspec"
+end
+
+desc "Publish the gem to Rubyforge"
+task "publish" => "build" do
+  require 'rubyforge'
+  rubyforge_config_path = File.expand_path(File.join('~', '.rubyforge'))
+  user_config = YAML::load(File.open(rubyforge_config_path + '/user-config.yml'))
+  auto_config = YAML::load(File.open(rubyforge_config_path + '/auto-config.yml'))
+
+  @rubyforge = RubyForge::Client.new(user_config, auto_config)
+
+  @rubyforge.login
+  @rubyforge.add_release('tuiter', 'tuiter', "#{spec.version}", "#{spec.name}-#{spec.version}.gem")
 end
 
 task :default => ["test"]
