@@ -26,7 +26,7 @@ class ClientTest < Test::Unit::TestCase
         Net::HTTP::Post.any_instance.expects(:basic_auth).with(@username, @password)
         Net::HTTP::Post.any_instance.expects(:set_form_data).with('status' => @update_message, 'in_reply_to_status_id' => nil)
 
-        # dosen't make real request
+        # doesn't make real request
         Net::HTTP.any_instance.expects(:request).returns(Net::HTTPSuccess.new('1.1', 200, 'OK'))
 
         @response = @client.update(@update_message)
