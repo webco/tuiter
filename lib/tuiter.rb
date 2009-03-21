@@ -5,7 +5,7 @@ require 'logger'
 
 require 'json'
 
-require 'tuiter/client'
-require 'tuiter/data/user'
-require 'tuiter/data/status'
-require 'tuiter/data/rate_limit'
+require 'lib/tuiter/client'
+require 'lib/tuiter/data/user'
+require 'lib/tuiter/data/status'
+require 'lib/tuiter/data/rate_limit'
