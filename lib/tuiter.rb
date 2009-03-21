@@ -5,6 +5,9 @@ require 'logger'
 
 require 'json'
 
+libdir = File.dirname(__FILE__)
+$LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
+
 require 'tuiter/client'
 require 'tuiter/data/user'
 require 'tuiter/data/status'
