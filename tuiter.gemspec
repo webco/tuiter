@@ -27,6 +27,11 @@ Gem::Specification.new do |s|
  s.rubyforge_project = "tuiter"
  s.summary = "Yet another Twitter API wrapper library in Ruby"
  s.description = "Yet another Twitter API wrapper library in Ruby"
- s.add_dependency "json", ">= 1.1"
  s.name = "tuiter"
+ 
+ if RUBY_PLATFORM  =~ /java/
+   s.add_dependency "json_pure", ">= 1.1"
+ else
+   s.add_dependency "json", ">= 1.1"
+ end
 end
