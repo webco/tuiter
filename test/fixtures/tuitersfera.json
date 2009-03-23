@@ -1,0 +1,37 @@
+{
+"profile_background_image_url":"http:\/\/static.twitter.com\/images\/themes\/theme1\/bg.gif",
+"description":"Projeto focado em medir a twittersfera brasileira.",
+"utc_offset":-10800,
+"profile_sidebar_fill_color":"e0ff92",
+"following":false,
+"friends_count":2053,
+"notifications":false,
+"profile_sidebar_border_color":"87bc44",
+"profile_background_tile":false,
+"time_zone":"Brasilia",
+"favourites_count":0,
+"profile_image_url":"http:\/\/s3.amazonaws.com\/twitter_production\/profile_images\/102032546\/tuit_normal.jpg",
+"url":"http:\/\/tuitersfera.com.br\/",
+"name":"Tuitersfera Brasil",
+"protected":false,
+"status":
+  {
+  "text":"Yesbaaaaaaa.... Completamos 1.000 usu\u00e1rios no Tuitersfera. http:\/\/tuitersfera.com.br\/",
+  "favorited":false,
+  "in_reply_to_user_id":null,
+  "in_reply_to_status_id":null,
+  "truncated":false,
+  "created_at":"Thu Feb 12 16:53:55 +0000 2009",
+  "id":1203219398,
+  "source":"<a href=\"http:\/\/www.twhirl.org\/\">twhirl<\/a>"
+  },
+"profile_background_color":"9ae4e8",
+"followers_count":1946,
+"screen_name":"tuitersfera",
+"profile_text_color":"000000",
+"statuses_count":122,
+"created_at":"Sat Jan 31 13:39:45 +0000 2009",
+"location":"S\u00e3o Paulo, Brasil",
+"id":19815179,
+"profile_link_color":"0000ff"
+}

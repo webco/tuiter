@@ -1,0 +1,48 @@
+[
+  {
+  "user":
+    {
+    "description":"Projeto focado em medir a twittersfera brasileira.",
+    "profile_image_url":"http:\/\/s3.amazonaws.com\/twitter_production\/profile_images\/102032546\/tuit_normal.jpg",
+    "url":"http:\/\/tuitersfera.com.br\/",
+    "name":"Tuitersfera Brasil",
+    "protected":false,
+    "followers_count":1946,
+    "screen_name":"tuitersfera",
+    "location":"S\u00e3o Paulo, Brasil",
+    "id":19815179
+    },
+  "text":"Yesbaaaaaaa.... Completamos 1.000 usu\u00e1rios no Tuitersfera. http:\/\/tuitersfera.com.br\/",
+  "in_reply_to_screen_name":null,
+  "favorited":false,
+  "in_reply_to_user_id":null,
+  "in_reply_to_status_id":null,
+  "truncated":false,
+  "created_at":"Thu Feb 12 16:53:55 +0000 2009",
+  "id":1203219398,
+  "source":"<a href=\"http:\/\/www.twhirl.org\/\">twhirl<\/a>"
+  },
+  {
+  "user":
+    {
+    "description":"Projeto focado em medir a twittersfera brasileira.",
+    "profile_image_url":"http:\/\/s3.amazonaws.com\/twitter_production\/profile_images\/102032546\/tuit_normal.jpg",
+    "url":"http:\/\/tuitersfera.com.br\/",
+    "name":"Tuitersfera Brasil",
+    "protected":false,
+    "followers_count":1946,
+    "screen_name":"tuitersfera",
+    "location":"S\u00e3o Paulo, Brasil",
+    "id":19815179
+    },
+  "text":"Hello beautiful, how you're doing?",
+  "in_reply_to_screen_name":"HotCarla",
+  "favorited":false,
+  "in_reply_to_user_id":88888888,
+  "in_reply_to_status_id":null,
+  "truncated":false,
+  "created_at":"Sun Mar 22 12:10:21 +0000 2009",
+  "id":1203219398,
+  "source":"<a href=\"http:\/\/www.twhirl.org\/\">twhirl<\/a>"
+  }
+]

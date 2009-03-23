@@ -1,0 +1,48 @@
+[
+  {
+  "in_reply_to_user_id":19815179,
+  "truncated":false,
+  "user":
+    {
+    "description":"I am cool",
+    "followers_count":50,
+    "profile_image_url":"http:\/\/static.twitter.com\/images\/default_profile_normal.png",
+    "url":"http:\/\/tuitersfera.com.br\/",
+    "name":"Morgan Freeman",
+    "protected":false,
+    "screen_name":"morgan",
+    "location":"Hollywood, CA, USA",
+    "id":99999999
+    },
+  "favorited":false,
+  "text":"@tuitersfera hello?",
+  "created_at":"Sun Mar 22 18:56:38 +0000 2009",
+  "id":3333,
+  "in_reply_to_screen_name":"tuitersfera",
+  "in_reply_to_status_id":null,
+  "source":"web"
+  },
+  {
+  "in_reply_to_user_id":19815179,
+  "truncated":false,
+  "user":
+    {
+    "description":"Just relaxing",
+    "followers_count":300,
+    "profile_image_url":"http:\/\/static.twitter.com\/images\/default_profile_normal.png",
+    "url":"http:\/\/tuitersfera.com.br\/",
+    "name":"Carla Gugino",
+    "protected":false,
+    "screen_name":"HotCarla",
+    "location":"Hollywood, CA, USA",
+    "id":88888888
+    },
+  "favorited":false,
+  "text":"@tuitersfera I am fine, thanks.",
+  "created_at":"Sun Mar 22 13:50:38 +0000 2009",
+  "id":2222,
+  "in_reply_to_screen_name":"tuitersfera",
+  "in_reply_to_status_id":1,
+  "source":"web"
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+  "description":"Follower #1",
+  "followers_count":300,
+  "url":"http:\/\/tuitersfera.com.br\/",
+  "name":"Joe Doe",
+  "protected":false,
+  "status":
+    {
+    "in_reply_to_status_id":null,
+    "truncated":false,
+    "text":"I am fine",
+    "created_at":"Mon Mar 23 18:25:41 +0000 2009",
+    "favorited":false,
+    "id":1203219398,
+    "in_reply_to_user_id":null,
+    "source":"web"
+    },
+  "profile_image_url":"http:\/\/static.twitter.com\/images\/default_profile_normal.png",
+  "location":"S\u00e3o Paulo",
+  "id":11111111,
+  "screen_name":"follower#1"
+  },
+  {
+  "description":"Follower #2",
+  "followers_count":15,
+  "url":"http:\/\/tuitersfera.com.br\/",
+  "name":"Mark Knoffler",
+  "protected":false,
+  "status":
+    {
+    "in_reply_to_status_id":null,
+    "truncated":false,
+    "text":"Playing the blues",
+    "created_at":"Mon Mar 23 09:30:10 +0000 2009",
+    "favorited":false,
+    "id":1203219398,
+    "in_reply_to_user_id":null,
+    "source":"web"
+    },
+  "profile_image_url":"http:\/\/static.twitter.com\/images\/default_profile_normal.png",
+  "location":"S\u00e3o Paulo",
+  "id":22222222,
+  "screen_name":"follower#2"
+  },
+  {
+  "description":"Follower #3",
+  "followers_count":200,
+  "url":"http:\/\/tuitersfera.com.br\/",
+  "name":"Iron Man",
+  "protected":false,
+  "status":
+    {
+    "in_reply_to_status_id":null,
+    "truncated":false,
+    "text":"Saving the world",
+    "created_at":"Mon Mar 23 09:30:10 +0000 2009",
+    "favorited":false,
+    "id":1203219398,
+    "in_reply_to_user_id":null,
+    "source":"web"
+    },
+  "profile_image_url":"http:\/\/static.twitter.com\/images\/default_profile_normal.png",
+  "location":"San Francisco",
+  "id":33333333,
+  "screen_name":"follower#3"
+  }  
+]
