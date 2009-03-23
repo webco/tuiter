@@ -34,7 +34,7 @@ source part out.
     
     client.update('Hey Ho, Twitters!')
 
-There are (or at least we pretend to add :-) another examples in the examples/ 
+There are (or at least we want to add :-) another examples in the examples/ 
 folder.
 
 == Roadmap and TO-DO list
