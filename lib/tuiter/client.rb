@@ -65,7 +65,7 @@ module Tuiter
     
     def verify_credentials?
       if res = request("http://twitter.com/account/verify_credentials.json")
-        return Tuiter::UserExtended.new(JSON.parse(res))
+        return UserExtended.new(JSON.parse(res))
       else
         return nil
       end
@@ -108,7 +108,7 @@ module Tuiter
       end
       if res = request(query+params)
         data = JSON.parse(res)
-        return data.map { |d| Tuiter::Status.new(d) }
+        return data.map { |d| Status.new(d) }
       else
         return nil
       end
@@ -116,7 +116,7 @@ module Tuiter
     
     def get_client
       if res = request("http://twitter.com/users/show/#{@username}.json")
-        return Tuiter::UserExtended.new(JSON.parse(res))
+        return UserExtended.new(JSON.parse(res))
       else
         return nil
       end
@@ -124,7 +124,7 @@ module Tuiter
     
     def get_user(id)
       if res = request("http://twitter.com/users/show/#{id}.json")
-        return Tuiter::UserExtended.new(JSON.parse(res))
+        return UserExtended.new(JSON.parse(res))
       else
         return nil
       end
@@ -132,7 +132,7 @@ module Tuiter
     
     def get_status(id)
       if res = request("http://twitter.com/statuses/show/#{id}.json")
-        return Tuiter::Status.new(JSON.parse(res))
+        return Status.new(JSON.parse(res))
       else
         return nil
       end
@@ -140,7 +140,7 @@ module Tuiter
     
     def rate_limit
       if res = request("http://twitter.com/account/rate_limit_status.json")
-        return Tuiter::RateLimit.new(JSON.parse(res))
+        return RateLimit.new(JSON.parse(res))
       else
         return nil
       end

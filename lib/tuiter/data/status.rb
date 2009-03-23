@@ -34,7 +34,7 @@ module Tuiter
     def initialize(data=nil)
       unless data.nil?
         super(data)
-        @user = Tuiter::UserBasic.new(data["user"])
+        @user = UserBasic.new(data["user"])
       end
     end
 

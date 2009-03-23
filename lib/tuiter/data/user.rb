@@ -73,7 +73,7 @@ module Tuiter
     def initialize(data=nil)
       unless data.nil?
         super(data)
-        @status = Tuiter::StatusBasic.new(data["status"])
+        @status = StatusBasic.new(data["status"])
       end
     end
 
