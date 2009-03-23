@@ -10,6 +10,8 @@ require "mocha"
 #   Test::Unit::TestCase.backtrace_filters = [:method_name]
 # rescue LoadError
 #   # Just ignore it
+# rescue NoMethodError
+#   # Just ignore it  
 # end
 
 require File.dirname(__FILE__) + "/../lib/tuiter"

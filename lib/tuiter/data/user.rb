@@ -53,7 +53,7 @@ module Tuiter
         @profile_sidebar_fill_color = data["profile_sidebar_fill_color"]
         @profile_sidebar_border_color = data["profile_sidebar_border_color"]
         @friends_count = data["friends_count"].to_i
-        @created_at = Time.parse(data["created_at"])
+        @created_at = (data["created_at"] ? DateTime.parse(data["created_at"]) : DateTime.now)
         @favourites_count = data["favourites_count"].to_i
         @utc_offset = data["utc_offset"]
         @time_zone = data["time_zone"]
@@ -62,6 +62,8 @@ module Tuiter
         @following = data["following"]
         @notifications = data["notifications"]
         @statuses_count = data["statuses_count"].to_i
+      else
+        @created_at = DateTime.now
       end
     end
 
