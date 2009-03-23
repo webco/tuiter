@@ -4,6 +4,10 @@ require "rake"
 require "rake/testtask"
 require "rake/rdoctask"
 
+Dir["#{File.dirname(__FILE__)}/tasks/*.rake"].each do |req|
+  load req
+end
+
 require "lib/tuiter/version"
 
 desc "Run test suite"
