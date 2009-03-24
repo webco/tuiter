@@ -13,7 +13,7 @@ module Tuiter
 
     def initialize(data = nil)
       unless data.nil?
-        @created_at = Time.parse(data["created_at"])
+        @created_at = (data["created_at"] ? DateTime.parse(data["created_at"]) : DateTime.now)
         @id = data["id"]
         @text = data["text"]
         @source = data["source"]
@@ -22,6 +22,8 @@ module Tuiter
         @in_reply_to_user_id = data["in_reply_to_user_id"]
         @favorited = data["favorited"]
         @in_reply_to_screen_name = data["in_reply_to_screen_name"]
+      else
+        @created_at = DateTime.now
       end
     end  
 

@@ -39,7 +39,7 @@ class UserTest < Test::Unit::TestCase
       end
     end # context "Extended"
     
-    context "Twitter" do
+    context "for Twitter" do
       should_attr_accessor_for Tuiter::User, USER_TWITTER_ATTRIBUTES
       should_load_attribute_on_initialize Tuiter::User, USER_BASICS_ATTRIBUTES
       
@@ -50,7 +50,7 @@ class UserTest < Test::Unit::TestCase
         assert_equal status_expected, user.status
       end
       
-    end # context "Twitter"
+    end # context "for Twitter"
     
     
     
