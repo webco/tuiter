@@ -22,7 +22,7 @@ or live on the bleeding edge.
 
 To install the Github version, simply run on a console:
 
-    gem install webco-utils --source=http://gems.github.com
+    gem install webco-tuiter --source=http://gems.github.com
 
 If you already have Github gem repository on you gem source, you can leave the
 source part out.
