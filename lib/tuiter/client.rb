@@ -45,7 +45,19 @@ module Tuiter
         res.error!
       end
     end
-    
+   
+    def direct_list(options = {})
+      url = 'http://twitter.com/direct_messages.json'
+      params = parse_options(options) || ""
+
+      if res = request(url+params)
+        data = JSON.parse(res)
+        return data.map { |d| DirectMessage.new(d) }
+      else
+        return nil
+      end
+    end
+
     def friendship_new(user, follow = nil)
       log("friendship_new() following: #{user}")
       url = URI.parse("http://twitter.com/friendships/create/#{user}.json")
@@ -179,7 +191,27 @@ module Tuiter
       log("request() error: #{e.message} in #{e.backtrace.first.to_s}")
       return nil
     end
-    
+   
+    def parse_options(options)
+      if options[:since]
+        params = "?since=#{options[:since]}"
+      elsif options[:since_id]
+        params = "?since_id=#{options[:since_id]}"
+      else
+        params = ""
+      end
+
+      if options[:page]
+        if params == ""
+            params = "?page=#{options[:page]}"
+        else
+            params = params + "&" + "page=#{options[:page]}"
+        end
+      end
+
+      return params
+    end
+
     def setup_a_proxy?
       http_proxy = ENV['http_proxy'] || ENV['HTTP_PROXY'] || nil
       
