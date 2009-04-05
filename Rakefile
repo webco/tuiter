@@ -3,6 +3,7 @@
 require "rake"
 require "rake/testtask"
 require "rake/rdoctask"
+require 'rcov/rcovtask'
 
 Dir["#{File.dirname(__FILE__)}/tasks/*.rake"].each do |req|
   load req
@@ -126,6 +127,14 @@ task "publish" => "build" do
 
   @rubyforge.login
   @rubyforge.add_release('tuiter', 'tuiter', "#{spec.version}", "#{spec.name}-#{spec.version}.gem")
+end
+
+desc "Rcov"
+Rcov::RcovTask.new(:rcov)  do |t|
+  t.pattern = ENV["FROM"] || FileList["test/**/*_test.rb"]
+  t.output_dir = "coverage"
+  t.rcov_opts = ["-x gem,TextMate", "--text-summary", "--html", "--charset UTF8"]
+  # t.rcov_opts = ["-x gem,TextMate", "--text-summary", "--html", "--charset UTF8"]
 end
 
 task :default => ["test"]
