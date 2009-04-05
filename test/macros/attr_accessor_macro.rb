@@ -15,7 +15,7 @@ class Test::Unit::TestCase
   end
 
   def self.should_load_attribute_on_initialize(klass, attributes, expected_value = "value", setter_value = expected_value)
-    
+    attributes = [attributes] unless attributes.class == Array
     attributes.each do |attribute|
       should "load attribute '#{attribute}' on initialize" do
         data = eval("{'#{attribute}' => #{setter_value.inspect}}")

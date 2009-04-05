@@ -10,8 +10,8 @@ module Tuiter
     def initialize(data = nil)
       unless data.nil?
         @reset_time_in_seconds = Time.at(data["reset_time_in_seconds"].to_i)
-        @reset_time = Time.parse(data["reset_time"])
-        @reset_window = @reset_time - Time.now
+        @reset_time = Time.parse(data["reset_time"]) if data["reset_time"]
+        @reset_window = @reset_time - Time.now if @reset_time
         @remaining_hits = data["remaining_hits"].to_i
         @hourly_limit = data["hourly_limit"].to_i
       end
