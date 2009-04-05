@@ -24,7 +24,7 @@ module Tuiter
         log("update() success: OK")
         return res # OK
       else
-        log("update() error: #{res.error!}")
+        log("update() error: #{res.to_s}")
         res.error!
       end
     end
