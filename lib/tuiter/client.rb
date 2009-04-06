@@ -101,7 +101,15 @@ module Tuiter
         return nil
       end
     end
-    
+ 
+    def get_followers_ids 
+      if res = request("http://twitter.com/followers/ids/#{username}.json")
+        return JSON.parse(res)
+      else
+        return nil
+      end
+    end
+
     def get_replies(options = {})
       query = "http://twitter.com/statuses/replies.json"
       if options[:since]
