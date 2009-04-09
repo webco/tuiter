@@ -102,6 +102,25 @@ module Tuiter
       end
     end
     
+    def get_friends(options = {})
+      if options[:id]
+        query = "http://twitter.com/statuses/friends/#{options[:id]}.json"
+      else
+        query = "http://twitter.com/statuses/friends.json"
+      end
+      if options[:page]
+        params = "?page=#{options[:page]}"
+      else
+        params = ""
+      end
+      if res = request(query+params)
+        data = JSON.parse(res)
+        return data.map { |d| User.new(d) }
+      else
+        return nil
+      end
+    end
+    
     def get_replies(options = {})
       query = "http://twitter.com/statuses/replies.json"
       if options[:since]
