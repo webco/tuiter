@@ -1,36 +1,46 @@
+== v0.0.3
+  * Resolving a simple conflict and adding get_followers_ids method
+  * alterando gemspec
+  * adding get_friends call to api
+  * Autotest configuration file
+  * Adding followers ids retrieval method
+  * Testing client on try update message and result http response status error
+  * Added RCOV rake task
+  * Tests for rate_limit and shoulda macro should_load_attribute_on_initialize
+
 == v0.0.2
-	* Added github profile path on AUTHORS
-	* Bumping version, including direct message files
-	* Updating AUTHORS. Giving credit where is due
-	* Adding DirectMessage data structure and listing method. Bumping tiny version one up
-	* Fixing the installation instructions on the README file
-	* Refactoring client tests to use fakeweb and less expectations
-	* Tests for StatusBasic and Status
-	* Tests for User, UserBasic and UserExtended - 100% tests coverage
-	* Added rake tasks to execute rcov
-	* Adding some json fixtures for testing
-	* Fixing a false cognate on README
-	* Added initial tests
-	* Namespace done right
-	* Fixed requires definitely
-	* Fixed requires again
-	* Fixed requires
-	* Updating README
-	* Updating tuiter.gemspec
-	* Adding a rake task to publish tuiter on Rubyforge
-	* Added http proxy support to all operations
-	* Added check RUBY_PLATFORM because JRuby does not support native extensions
-	* Rakefile and gemspec updated, it should work fine now
-	* Trying to fix the gemspec
-	* Small fix on tuiter gemspec
-	* Adding the gemspec to allow Github to generate and publish a tuiter gem
-	* Adding the most simple and obvious example ever
-	* The most simple and basic example that could ever be
-	* Updating .gitignore
-	* Adding a README, just for kicks
-	* Moving the requires out of the client
-	* Cleaning up some stuff, organizing things, the plumbing
-	* Adding authors, license and changelog files
+  * Added github profile path on AUTHORS
+  * Bumping version, including direct message files
+  * Updating AUTHORS. Giving credit where is due
+  * Adding DirectMessage data structure and listing method. Bumping tiny version one up
+  * Fixing the installation instructions on the README file
+  * Refactoring client tests to use fakeweb and less expectations
+  * Tests for StatusBasic and Status
+  * Tests for User, UserBasic and UserExtended - 100% tests coverage
+  * Added rake tasks to execute rcov
+  * Adding some json fixtures for testing
+  * Fixing a false cognate on README
+  * Added initial tests
+  * Namespace done right
+  * Fixed requires definitely
+  * Fixed requires again
+  * Fixed requires
+  * Updating README
+  * Updating tuiter.gemspec
+  * Adding a rake task to publish tuiter on Rubyforge
+  * Added http proxy support to all operations
+  * Added check RUBY_PLATFORM because JRuby does not support native extensions
+  * Rakefile and gemspec updated, it should work fine now
+  * Trying to fix the gemspec
+  * Small fix on tuiter gemspec
+  * Adding the gemspec to allow Github to generate and publish a tuiter gem
+  * Adding the most simple and obvious example ever
+  * The most simple and basic example that could ever be
+  * Updating .gitignore
+  * Adding a README, just for kicks
+  * Moving the requires out of the client
+  * Cleaning up some stuff, organizing things, the plumbing
+  * Adding authors, license and changelog files
 
 == v0.0.1
   * Extracting tuiter from tuitersfera
