@@ -74,6 +74,22 @@ module Tuiter
         res.error!
       end
     end
+
+    def remove_friendship(user, follow = nil)
+      log("friendship_new() following: #{user}")
+      url = URI.parse("http://twitter.com/friendships/destroy/#{user}.json")
+      req = Net::HTTP::Post.new(url.path)
+      req.basic_auth @username, @password
+      res = new_http_for(url).start {|http| http.request(req) }
+      case res
+      when Net::HTTPSuccess, Net::HTTPRedirection
+        log("remove_friendship() success: OK")
+        return res # OK
+      else
+        log("remove_friendship() error: #{res.error!}")
+        res.error!
+      end
+    end
     
     def verify_credentials?
       if res = request("http://twitter.com/account/verify_credentials.json")

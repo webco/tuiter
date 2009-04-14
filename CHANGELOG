@@ -1,3 +1,6 @@
+== v0.0.4
+  * Adding remove friendship method
+
 == v0.0.3
   * Resolving a simple conflict and adding get_followers_ids method
   * alterando gemspec
