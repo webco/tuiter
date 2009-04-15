@@ -1,11 +1,17 @@
 module Tuiter
 
-  require 'tuiter/methods/friendships'
+  require 'tuiter/methods/status'
+  require 'tuiter/methods/user'
+  require 'tuiter/methods/friendship'
+  require 'tuiter/methods/account'
 
   class Client
     attr_accessor :username, :password
     
+    include StatusMethods
+    include UserMethods
     include FriendshipMethods
+    include AccountMethods
     
     def initialize(options = {})
       @pid = Process.pid
@@ -14,23 +20,6 @@ module Tuiter
       @password = options[:password]
       @use_proxy = setup_a_proxy?
       log("initialize()")
-    end
-    
-    def update(status, in_reply_to_status_id = nil)
-      log("update() sending: #{status}")
-      url = URI.parse('http://twitter.com/statuses/update.json')
-      req = Net::HTTP::Post.new(url.path)
-      req.basic_auth @username, @password
-      req.set_form_data({'status'=>status, 'in_reply_to_status_id'=>in_reply_to_status_id })
-      res = new_http_for(url).start {|http| http.request(req) }
-      case res
-      when Net::HTTPSuccess, Net::HTTPReFion
-        log("update() success: OK")
-        return res # OK
-      else
-        log("update() error: #{res.to_s}")
-        res.error!
-      end
     end
     
     def direct_new(user, text)
@@ -61,33 +50,6 @@ module Tuiter
         return nil
       end
     end
-
-    def verify_credentials?
-      if res = request("http://twitter.com/account/verify_credentials.json")
-        return UserExtended.new(JSON.parse(res))
-      else
-        return nil
-      end
-    end
-    
-    def get_followers(options = {})
-      if options[:id]
-        query = "http://twitter.com/statuses/followers/#{options[:id]}.json"
-      else
-        query = "http://twitter.com/statuses/followers.json"
-      end
-      if options[:page]
-        params = "?page=#{options[:page]}"
-      else
-        params = ""
-      end
-      if res = request(query+params)
-        data = JSON.parse(res)
-        return data.map { |d| User.new(d) }
-      else
-        return nil
-      end
-    end
  
     def get_followers_ids 
       if res = request("http://twitter.com/followers/ids/#{username}.json")
@@ -96,77 +58,10 @@ module Tuiter
         return nil
       end
     end
-   
-    def get_friends(options = {})
-      if options[:id]
-        query = "http://twitter.com/statuses/friends/#{options[:id]}.json"
-      else
-        query = "http://twitter.com/statuses/friends.json"
-      end
-      if options[:page]
-        params = "?page=#{options[:page]}"
-      else
-        params = ""
-      end
-      if res = request(query+params)
-        data = JSON.parse(res)
-        return data.map { |d| User.new(d) }
-      else
-        return nil
-      end
-    end
-
-    def get_replies(options = {})
-      query = "http://twitter.com/statuses/replies.json"
-      if options[:since]
-        params = "?since=#{options[:since]}"
-      elsif options[:since_id]
-        params = "?since_id=#{options[:since_id]}"
-      else
-        params = ""
-      end
-      if options[:page]
-        if params == ""
-            params = "?page=#{options[:page]}"
-        else
-            params = params + "&" + "page=#{options[:page]}"
-        end
-      end
-      if res = request(query+params)
-        data = JSON.parse(res)
-        return data.map { |d| Status.new(d) }
-      else
-        return nil
-      end
-    end
     
     def get_client
       if res = request("http://twitter.com/users/show/#{@username}.json")
         return UserExtended.new(JSON.parse(res))
-      else
-        return nil
-      end
-    end
-    
-    def get_user(id)
-      if res = request("http://twitter.com/users/show/#{id}.json")
-        return UserExtended.new(JSON.parse(res))
-      else
-        return nil
-      end
-    end
-    
-    def get_status(id)
-      if res = request("http://twitter.com/statuses/show/#{id}.json")
-        return Status.new(JSON.parse(res))
-      else
-        return nil
-      end
-    end
-    
-    def rate_limit
-      if res = request("http://twitter.com/account/rate_limit_status.json")
-        return RateLimit.new(JSON.parse(res))
       else
         return nil
       end

@@ -1,3 +1,8 @@
+# Friendship Methods
+# [X] friendships/create
+# [X] friendships/destroy
+# [X] friendships/exists
+
 module FriendshipMethods
 
   def friendships_create(user, follow = nil)
