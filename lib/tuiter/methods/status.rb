@@ -25,7 +25,7 @@ module StatusMethods
     req.set_form_data({'status'=>status, 'in_reply_to_status_id'=>in_reply_to_status_id })
     res = new_http_for(url).start {|http| http.request(req) }
     case res
-    when Net::HTTPSuccess, Net::HTTPReFion
+    when Net::HTTPSuccess, Net::HTTPRedirection
       log("update() success: OK")
       return res # OK
     else

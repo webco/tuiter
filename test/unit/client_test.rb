@@ -32,7 +32,7 @@ class ClientTest < Test::Unit::TestCase
           Net::HTTP::Post.any_instance.expects(:basic_auth).with(@username, @password)
           Net::HTTP::Post.any_instance.expects(:set_form_data).with('status' => @update_message, 'in_reply_to_status_id' => nil)
 
-          @response = @client.update(@update_message)
+          @response = @client.statuses_update(@update_message)
 
           assert_instance_of Net::HTTPOK, @response
         end
@@ -51,7 +51,7 @@ class ClientTest < Test::Unit::TestCase
           Net::HTTP::Post.any_instance.expects(:basic_auth).with(@username, @password)
           Net::HTTP::Post.any_instance.expects(:set_form_data).with('status' => @update_message, 'in_reply_to_status_id' => nil)
           assert_raises Net::HTTPFatalError do
-            @response = @client.update(@update_message)
+            @response = @client.statuses_update(@update_message)
           end
           # assert_instance_of Net::HTTPServiceUnavailable, @response
         end
