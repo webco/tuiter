@@ -2,16 +2,13 @@ module Tuiter
 
   require 'tuiter/methods/status'
   require 'tuiter/methods/user'
+  require 'tuiter/methods/direct_message'
   require 'tuiter/methods/friendship'
+  require 'tuiter/methods/social_graph'
   require 'tuiter/methods/account'
 
   class Client
     attr_accessor :username, :password
-    
-    include StatusMethods
-    include UserMethods
-    include FriendshipMethods
-    include AccountMethods
     
     def initialize(options = {})
       @pid = Process.pid
@@ -21,54 +18,15 @@ module Tuiter
       @use_proxy = setup_a_proxy?
       log("initialize()")
     end
-    
-    def direct_new(user, text)
-      log("direct_new() sending: #{text} to #{user}")
-      url = URI.parse('http://twitter.com/direct_messages/new.json')
-      req = Net::HTTP::Post.new(url.path)
-      req.basic_auth @username, @password
-      req.set_form_data({'user'=>user, 'text'=>text })
-      res = new_http_for(url).start {|http| http.request(req) }
-      case res
-      when Net::HTTPSuccess, Net::HTTPRedirection
-        log("direct_new() success: OK")
-        return res # OK
-      else
-        log("direct_new() error: #{res.error!}")
-        res.error!
-      end
-    end
-   
-    def direct_list(options = {})
-      url = 'http://twitter.com/direct_messages.json'
-      params = parse_options(options) || ""
 
-      if res = request(url+params)
-        data = JSON.parse(res)
-        return data.map { |d| DirectMessage.new(d) }
-      else
-        return nil
-      end
-    end
- 
-    def get_followers_ids 
-      if res = request("http://twitter.com/followers/ids/#{username}.json")
-        return JSON.parse(res)
-      else
-        return nil
-      end
-    end
-    
-    def get_client
-      if res = request("http://twitter.com/users/show/#{@username}.json")
-        return UserExtended.new(JSON.parse(res))
-      else
-        return nil
-      end
-    end
-  
+    include StatusMethods
+    include UserMethods
+    include DirectMessageMethods
+    include FriendshipMethods
+    include SocialGraphMethods
+    include AccountMethods
+
     private
-
     def request(url)
       http = nil
       status = Timeout::timeout(10) do
