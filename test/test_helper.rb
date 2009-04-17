@@ -4,17 +4,6 @@ require "shoulda"
 require "mocha"
 require 'fakeweb'
 
-# begin
-#   require "quietbacktrace"
-#   Test::Unit::TestCase.quiet_backtrace = true
-#   Test::Unit::TestCase.backtrace_silencers = [:test_unit, :gem_root, :e1]
-#   Test::Unit::TestCase.backtrace_filters = [:method_name]
-# rescue LoadError
-#   # Just ignore it
-# rescue NoMethodError
-#   # Just ignore it  
-# end
-
 require File.dirname(__FILE__) + "/../lib/tuiter"
 
 #Load shoulda macros
@@ -23,3 +12,5 @@ require File.dirname(__FILE__) + "/../lib/tuiter"
     require file
   end
 end
+
+Logger.any_instance.stubs(:info)
