@@ -11,7 +11,7 @@ module StatusMethods
   
   def statuses_show(id)
     if res = request("http://twitter.com/statuses/show/#{id}.json")
-      return Status.new(JSON.parse(res))
+      return Tuiter::Status.new(JSON.parse(res))
     else
       return nil
     end
