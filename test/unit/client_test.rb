@@ -2,11 +2,11 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < Test::Unit::TestCase
   
-  def self.fake_web_post_on_update(message = "Ok", http_response_status = 200)
-    FakeWeb.register_uri(:post, "http://twitter.com/statuses/update.json", :string => message, :status => http_response_status.to_s)
+  def fake_web_on_post(url, options = {:string => "OK", :status => "200"})
+    FakeWeb.register_uri(:post, url, options)
   end
-
-  context "A valid Tuiter client" do
+  
+  context "A valid Tuiter client without proxy" do
 
     setup do
       @username = "username"
@@ -14,17 +14,14 @@ class ClientTest < Test::Unit::TestCase
       @client = Tuiter::Client.new(:username => @username, :password => @password)
     end
 
-    context "posting data" do
+    context "on POST to statuses/update" do
       setup do
+        @update_message = "I'm fine"
       end
 
-      context "successfully" do
-
+      context "with successfully response" do
         setup do
-          @update_message = "I'm fine"
-          FakeWeb.register_uri(:post, "http://twitter.com/statuses/update.json", 
-                               :string => @update_message, 
-                               :status => "200")
+          fake_web_on_post("http://twitter.com/statuses/update.json", :string => @update_message, :status => "200")
         end
 
         should "allow the user to post an update to Twitter" do
@@ -32,34 +29,62 @@ class ClientTest < Test::Unit::TestCase
           Net::HTTP::Post.any_instance.expects(:basic_auth).with(@username, @password)
           Net::HTTP::Post.any_instance.expects(:set_form_data).with('status' => @update_message, 'in_reply_to_status_id' => nil)
 
-          @response = @client.update(@update_message)
-
+          assert_nothing_raised do
+            @response = @client.update(@update_message)
+          end
           assert_instance_of Net::HTTPOK, @response
         end
         
-      end # context "successfully"
+        should "allow the user to post a reply to Twitter" do
+          # basic authentication and form data
+          Net::HTTP::Post.any_instance.expects(:basic_auth).with(@username, @password)
+          Net::HTTP::Post.any_instance.expects(:set_form_data).with('status' => @update_message, 'in_reply_to_status_id' => "1234567890")
+          
+          assert_nothing_raised do
+            @response = @client.update(@update_message, "1234567890")
+          end
+          assert_instance_of Net::HTTPOK, @response
+        end
+        
+      end # context "with successfully response"
       
-      context "some error on request" do
+      context "with error response" do
         setup do
-          @update_message = "I'm fine"
-          FakeWeb.register_uri(:post, "http://twitter.com/statuses/update.json", 
-                               :string => "503 Service unavailable", 
-                               :status => ["503", "Service unavailable"])
+          response_status = ["503", "Service unavailable"]
+          fake_web_on_post("http://twitter.com/statuses/update.json", :string => response_status.join(" "), :status => response_status)
         end
         
         should "raise for http response status on 503" do
           Net::HTTP::Post.any_instance.expects(:basic_auth).with(@username, @password)
           Net::HTTP::Post.any_instance.expects(:set_form_data).with('status' => @update_message, 'in_reply_to_status_id' => nil)
+          
           assert_raises Net::HTTPFatalError do
-            @response = @client.update(@update_message)
+            @client.update(@update_message)
           end
-          # assert_instance_of Net::HTTPServiceUnavailable, @response
         end
         
-      end # context "some error on request"
+      end # context "with error response"
       
       
-    end # context "posting data"
+    end # context "on POST to statuses/update"
+    
+    context "on POST to direct_messages/new" do
+      setup do
+        fake_web_on_post("http://twitter.com/direct_messages/new.json")
+        @anoter_user = "1234567890"
+        @text = "Hello World!"
+      end
+      
+      should "allow the user to post a direct message to another Twitter's user" do
+        Net::HTTP::Post.any_instance.expects(:basic_auth).with(@username, @password)
+        Net::HTTP::Post.any_instance.expects(:set_form_data).with('user'=>@another_user, 'text'=>@text )
+        
+        assert_nothing_raised do
+          @response = @client.direct_new(@another_user, @text)
+        end
+        assert_instance_of(Net::HTTPOK, @response)
+      end
+    end # context "on POST to direct_messages/new"
     
     
   end # context "A valid Tuiter client"
