@@ -80,7 +80,7 @@ class ClientTest < Test::Unit::TestCase
         Net::HTTP::Post.any_instance.expects(:set_form_data).with('user'=>@another_user, 'text'=>@text )
         
         assert_nothing_raised do
-          @response = @client.direct_new(@another_user, @text)
+          @response = @client.direct_messages_new(@another_user, @text)
         end
         assert_instance_of(Net::HTTPOK, @response)
       end
