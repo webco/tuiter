@@ -1,13 +1,13 @@
 module Tuiter
 
-  require 'tuiter/methods/status'
-  require 'tuiter/methods/user'
-  require 'tuiter/methods/direct_message'
-  require 'tuiter/methods/friendship'
-  require 'tuiter/methods/social_graph'
-  require 'tuiter/methods/account'
-
   class Client
+    include Tuiter::StatusMethods
+    include Tuiter::UserMethods
+    include Tuiter::DirectMessageMethods
+    include Tuiter::FriendshipMethods
+    include Tuiter::SocialGraphMethods
+    include Tuiter::AccountMethods
+
     attr_accessor :username, :password
     
     def initialize(options = {})
@@ -18,13 +18,6 @@ module Tuiter
       @use_proxy = setup_a_proxy?
       log("initialize()")
     end
-
-    include StatusMethods
-    include UserMethods
-    include DirectMessageMethods
-    include FriendshipMethods
-    include SocialGraphMethods
-    include AccountMethods
 
     private
     def request(url)

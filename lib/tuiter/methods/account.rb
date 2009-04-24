@@ -9,22 +9,27 @@
 # [X] account/rate_limit_status
 # [ ] account/update_profile
 
-module AccountMethods
+module Tuiter
   
-  def account_verify_credentials?
-    if res = request("http://twitter.com/account/verify_credentials.json")
-      return Tuiter::UserExtended.new(JSON.parse(res))
-    else
-      return nil
+  module AccountMethods
+    
+    def account_verify_credentials?
+      if res = request("http://twitter.com/account/verify_credentials.json")
+        return Tuiter::UserExtended.new(JSON.parse(res))
+      else
+        return nil
+      end
     end
-  end
-  
-  def account_rate_limit_status
-    if res = request("http://twitter.com/account/rate_limit_status.json")
-      return Tuiter::RateLimit.new(JSON.parse(res))
-    else
-      return nil
+    
+    def account_rate_limit_status
+      if res = request("http://twitter.com/account/rate_limit_status.json")
+        return Tuiter::RateLimit.new(JSON.parse(res))
+      else
+        return nil
+      end
     end
-  end
   
+  end
+
 end
+
