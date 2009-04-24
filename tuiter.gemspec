@@ -2,7 +2,7 @@
 # RUN: 'rake gemify'
 
 Gem::Specification.new do |s|
- s.date = "2009-04-14"
+ s.date = "2009-04-24"
  s.authors = ["Manoel Lemos", "WebCo Internet"]
  s.require_paths = ["lib"]
  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -19,8 +19,14 @@ Gem::Specification.new do |s|
  "lib/tuiter/data/rate_limit.rb",
  "lib/tuiter/data/status.rb",
  "lib/tuiter/data/user.rb",
+ "lib/tuiter/methods",
+ "lib/tuiter/methods/account.rb",
+ "lib/tuiter/methods/direct_message.rb",
+ "lib/tuiter/methods/friendship.rb",
+ "lib/tuiter/methods/social_graph.rb",
+ "lib/tuiter/methods/status.rb",
+ "lib/tuiter/methods/user.rb",
  "lib/tuiter/version.rb",
- "lib/tuiter.log",
  "lib/tuiter.rb",
  "examples/basic_example.rb",
  "test/fixtures",
@@ -34,10 +40,11 @@ Gem::Specification.new do |s|
  "test/test_helper.rb",
  "test/unit",
  "test/unit/client_test.rb",
+ "test/unit/rate_limit_test.rb",
  "test/unit/status_test.rb",
  "test/unit/user_test.rb"]
  s.email = "opensource@webcointernet.com"
- s.version = "0.0.4"
+ s.version = "0.0.5"
  s.homepage = "http://github.com/webco/tuiter"
  s.rubyforge_project = "tuiter"
  s.summary = "Yet another Twitter API wrapper library in Ruby"

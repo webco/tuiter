@@ -7,7 +7,7 @@ unless defined? Tuiter::VERSION
     module VERSION
       MAJOR = 0
       MINOR = 0
-      TINY = 4
+      TINY = 5
 
       STRING = [MAJOR, MINOR, TINY].join('.')
     end
