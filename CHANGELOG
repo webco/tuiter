@@ -1,3 +1,17 @@
+== v0.0.5
+  * Version bump and gemspec update
+  * Improvements on parse_options
+  * direct_messages_sent method implemented and small namespace fix
+  * Small fix in Tuiter Client test
+  * Merging thomaz/master
+  * bug fix on statuses_show
+  * tests for client
+  * removed quietbacktrace configurations
+  * modified tests for new method names, bug fix in Client#statuses_update
+  * social_graph/direct_message methods moved to modules
+  * status/user/account methods moved to modules
+  * friendship methods moved to module
+
 == v0.0.4
   * Adding remove friendship method
 
