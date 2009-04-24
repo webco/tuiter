@@ -24,7 +24,7 @@ module Tuiter
       http = nil
       status = Timeout::timeout(10) do
         log("request() query: #{url}")
-        http = open(url, :http_basic_authentication=>[@username, @password])
+        http = open(url, :http_basic_authentication => [@username, @password])
         log("request() debug: http status is #{http.status.join(' ')}")
         if http.status == ["200", "OK"]
           res = http.read
@@ -44,21 +44,15 @@ module Tuiter
     end
    
     def parse_options(options)
-      if options[:since]
-        params = "?since=#{options[:since]}"
-      elsif options[:since_id]
-        params = "?since_id=#{options[:since_id]}"
-      else
-        params = ""
-      end
+      params = ""
 
-      if options[:page]
-        if params == ""
-            params = "?page=#{options[:page]}"
-        else
-            params = params + "&" + "page=#{options[:page]}"
+      options.each do |k, v|
+        unless params.empty?
+          params = params + "&#{k}=#{v}"
+        else  
+          params = "?#{k}=#{v}"
         end
-      end
+      end if (options && !options.empty?)
 
       return params
     end
