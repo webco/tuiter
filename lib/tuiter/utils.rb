@@ -22,20 +22,16 @@ module Tuiter
       request(:get, path, headers)
     end
     
-    def post(path, body = '' headers = {})
+    def post(path, body = '', headers = {})
       request(:post, path, body, headers)
     end
     
-    def put(path, body = '' headers = {})
+    def put(path, body = '', headers = {})
       request(:post, path, body, headers)
     end
     
     def delete(path, headers = {})
       request(:delete, path, headers)
-    end
-    
-    def head(path, headers = {})
-      request(:head, path, headers)
     end
     
     def is_basic?
@@ -60,8 +56,7 @@ module Tuiter
         _uri = URI.parse(path)
         path = "#{_uri.path}#{_uri.query ? "?#{_uri.query}" : ""}"
       end
-
-      response = http.request(basic_http_request(http_method, path, *arguments))
+      response = http.request(create_http_request(http_method, path, *arguments))
     end
     
     #Instantiates the http object
@@ -77,8 +72,8 @@ module Tuiter
       http_object
     end
     
-    #snippet from oauth gem
-    def basic_http_request(http_method, path, *arguments)
+    #snippet based on oauth gem
+    def create_http_request(http_method, path, *arguments)
       http_method = http_method.to_sym
 
       if [:post, :put].include?(http_method)
@@ -98,14 +93,12 @@ module Tuiter
         request = Net::HTTP::Get.new(path,headers)
       when :delete
         request =  Net::HTTP::Delete.new(path,headers)
-      when :head
-        request = Net::HTTP::Head.new(path,headers)
       else
         raise ArgumentError, "Don't know how to handle http_method: :#{http_method.to_s}"
       end
       
       # handling basic http auth
-      req.basic_auth @config[:username], @config[:password]
+      request.basic_auth @config[:username], @config[:password]
 
       if data.is_a?(Hash)
         request.set_form_data(data)
