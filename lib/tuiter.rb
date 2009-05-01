@@ -12,7 +12,7 @@ $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 TWITTER_API_BASE_URL = "http://www.twitter.com"
 
 # Utils
-require 'utils'
+require 'tuiter/utils'
 
 # Tuiter API methods modules
 require 'tuiter/methods/status'
