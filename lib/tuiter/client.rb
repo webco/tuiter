@@ -13,9 +13,10 @@ module Tuiter
     def initialize(options = {})
       @pid = Process.pid
       @logger = options[:logger] || Logger.new('tuiter.log')
-      @username = options[:username]
-      @password = options[:password]
-      @use_proxy = setup_a_proxy?
+      @request_handler = Tuiter::Request.new(:basic, :username => options[:username], :password => options[:password])
+      #@username = options[:username]
+      #@password = options[:password]
+      #@use_proxy = setup_a_proxy?
       log("initialize()")
     end
 

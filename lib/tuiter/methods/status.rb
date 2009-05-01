@@ -21,11 +21,13 @@ module Tuiter
     
     def statuses_update(status, in_reply_to_status_id = nil)
       log("update() sending: #{status}")
-      url = URI.parse('http://twitter.com/statuses/update.json')
-      req = Net::HTTP::Post.new(url.path)
-      req.basic_auth @username, @password
-      req.set_form_data({'status'=>status, 'in_reply_to_status_id'=>in_reply_to_status_id })
-      res = new_http_for(url).start {|http| http.request(req) }
+      # url = URI.parse('http://twitter.com/statuses/update.json')
+      # req = Net::HTTP::Post.new(url.path)
+      # req.basic_auth @username, @password
+      # req.set_form_data({'status'=>status, 'in_reply_to_status_id'=>in_reply_to_status_id })
+      # res = new_http_for(url).start {|http| http.request(req) }
+      
+      res = @request_handler.post('/statuses/update.json', {'status' => status, 'in_reply_to_status_id' => in_reply_to_status_id })
       case res
       when Net::HTTPSuccess, Net::HTTPRedirection
         log("update() success: OK")
