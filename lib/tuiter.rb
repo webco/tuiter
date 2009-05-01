@@ -8,6 +8,9 @@ require 'json'
 libdir = File.dirname(__FILE__)
 $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
+# Utils
+require 'utils'
+
 # Tuiter API methods modules
 require 'tuiter/methods/status'
 require 'tuiter/methods/user'
