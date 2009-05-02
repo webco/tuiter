@@ -7,8 +7,6 @@ module Tuiter
     include Tuiter::FriendshipMethods
     include Tuiter::SocialGraphMethods
     include Tuiter::AccountMethods
-
-    attr_accessor :username, :password
     
     def initialize(options = {})
       @pid = Process.pid
