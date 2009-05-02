@@ -20,12 +20,17 @@ module Tuiter
       log("initialize()")
     end
     
-    def request_oauth_token
+    def request_token
       @request_handler.request_token
     end
     
     def authorize(token, secret)
       @request_handler.authorize(token, secret)
+    end
+
+    def authorized?
+      oauth_response = @request_handler.get('/account/verify_credentials.json')
+      return oauth_response.class == Net::HTTPOK
     end
 
     private

@@ -19,7 +19,7 @@ module Tuiter
     
     def authorize(token, secret)
       if @authentication_type == :oauth
-        request_token = OAuth::RequestToken.new(oauth_consumer, @config[:token], @config[:secret])
+        request_token = OAuth::RequestToken.new(oauth_consumer, token, secret)
         @access_token = request_token.get_access_token
         @config[:token] = @access_token.token
         @config[:secret] = @access_token.secret
@@ -130,7 +130,7 @@ module Tuiter
       end
    
       def oauth_request(http_method, path, *arguments)
-        oauth_response = access_token.get(http_method, path, *arguments)
+        oauth_response = oauth_access_token.request(http_method, path, *arguments)
         return oauth_response
       end
       
