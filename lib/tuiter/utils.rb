@@ -54,17 +54,27 @@ module Tuiter
     def basic_request(http_method, path, *arguments)
       if path !~ /^\//
         _uri = URI.parse(path)
+        _uri.path = "/" if _uri.path == ""
         path = "#{_uri.path}#{_uri.query ? "?#{_uri.query}" : ""}"
       end
+
       response = http.request(create_http_request(http_method, path, *arguments))
+      return response        
     end
     
     #Instantiates the http object
     def create_http
       tuiter_uri = URI.parse(TWITTER_API_BASE_URL)
       
-      if (@config[:proxy_host] and @config[:proxy_port] and @config[:proxy_user] and @config[:proxy_pass])
-        http_object = Net::HTTP.new(tuiter_uri.host, tuiter_uri.port, @proxy_host, @proxy_port, @proxy_user, @proxy_pass)
+      http_proxy = ENV['http_proxy'] || ENV['HTTP_PROXY'] || nil
+      if (http_proxy)
+        proxy = URI.parse(http_proxy)
+        if proxy.userinfo
+          proxy_user, proxy_pass = proxy.userinfo.split(/:/) 
+          http_object = Net::HTTP.new(tuiter_uri.host, tuiter_uri.port, proxy.host, proxy.port, proxy_user, proxy_pass)
+        else
+          http_object = Net::HTTP.new(tuiter_uri.host, tuiter_uri.port, proxy.host, proxy.port)
+        end
       else
         http_object = Net::HTTP.new(tuiter_uri.host, tuiter_uri.port)
       end

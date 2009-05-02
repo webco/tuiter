@@ -17,7 +17,7 @@ class UtilsTest < Test::Unit::TestCase
       setup do
         @tuiter_request = Tuiter::Request.new(:basic, :username => "foo", :password => "bar")
         FakeWeb.register_uri("http://foo:bar@www.twitter.com/secret", :string => "Unauthorized", :status => ["401", "Unauthorized"])
-        FakeWeb.register_uri(:get, 'http://foo:bar@www.twitter.com/', :string => "response")
+        FakeWeb.register_uri(:get, 'http://foo:bar@www.twitter.com', :string => "response")
         FakeWeb.register_uri(:post, 'http://foo:bar@www.twitter.com/create', :string => "created")
       end
 
@@ -27,7 +27,7 @@ class UtilsTest < Test::Unit::TestCase
       end
       
       should "do a request correctly" do
-        assert_equal "response", @tuiter_request.request(:get, 'http://www.twitter.com/').body
+        assert_equal "response", @tuiter_request.request(:get, 'http://www.twitter.com').body
       end
       
       should "return 401 when user is not authenticated" do

@@ -18,7 +18,7 @@ module Tuiter
       else
         params = ""
       end
-      if res = request(query+params)
+      if res = @request_handler.get(query+params).body
         data = JSON.parse(res)
         return data.map { |d| Tuiter::User.new(d) }
       else
@@ -37,7 +37,7 @@ module Tuiter
       else
         params = ""
       end
-      if res = request(query+params)
+      if res = @request_handler.get(query+params).body
         data = JSON.parse(res)
         return data.map { |d| Tuiter::User.new(d) }
       else
@@ -46,7 +46,7 @@ module Tuiter
     end
     
     def users_show(id)
-      if res = request("http://twitter.com/users/show/#{id}.json")
+      if res = @request_handler.get("http://twitter.com/users/show/#{id}.json").body
         return Tuiter::UserExtended.new(JSON.parse(res))
       else
         return nil

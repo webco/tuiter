@@ -10,7 +10,7 @@ libdir = File.dirname(__FILE__)
 $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
 # some constants
-TWITTER_API_BASE_URL = "http://www.twitter.com"
+TWITTER_API_BASE_URL = "http://www.twitter.com/"
 
 # Utils
 require 'tuiter/utils'
