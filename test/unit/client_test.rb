@@ -21,7 +21,7 @@ class ClientTest < Test::Unit::TestCase
 
       context "with successfully response" do
         setup do
-          fake_web_on_post("http://#{@username}:#{@password}@www.twitter.com/statuses/update.json", :string => @update_message, :status => "200")
+          fake_web_on_post("http://#{@username}:#{@password}@twitter.com/statuses/update.json", :string => @update_message, :status => "200")
         end
 
         should "allow the user to post an update to Twitter" do
@@ -43,7 +43,7 @@ class ClientTest < Test::Unit::TestCase
       context "with error response" do
         setup do
           response_status = ["503", "Service unavailable"]
-          fake_web_on_post("http://#{@username}:#{@password}@www.twitter.com/statuses/update.json", :string => response_status.join(" "), :status => response_status)
+          fake_web_on_post("http://#{@username}:#{@password}@twitter.com/statuses/update.json", :string => response_status.join(" "), :status => response_status)
         end
         
         should "raise for http response status on 503" do
@@ -59,7 +59,7 @@ class ClientTest < Test::Unit::TestCase
     
     context "on POST to direct_messages/new" do
       setup do
-        fake_web_on_post("http://#{@username}:#{@password}@www.twitter.com/direct_messages/new.json")
+        fake_web_on_post("http://#{@username}:#{@password}@twitter.com/direct_messages/new.json")
         @anoter_user = "1234567890"
         @text = "Hello World!"
       end

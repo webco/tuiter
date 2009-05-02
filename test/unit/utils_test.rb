@@ -16,9 +16,9 @@ class UtilsTest < Test::Unit::TestCase
     context "basic authentication" do
       setup do
         @tuiter_request = Tuiter::Request.new(:basic, :username => "foo", :password => "bar")
-        FakeWeb.register_uri("http://foo:bar@www.twitter.com/secret", :string => "Unauthorized", :status => ["401", "Unauthorized"])
-        FakeWeb.register_uri(:get, 'http://foo:bar@www.twitter.com', :string => "response")
-        FakeWeb.register_uri(:post, 'http://foo:bar@www.twitter.com/create', :string => "created")
+        FakeWeb.register_uri("http://foo:bar@twitter.com/secret", :string => "Unauthorized", :status => ["401", "Unauthorized"])
+        FakeWeb.register_uri(:get, 'http://foo:bar@twitter.com', :string => "response")
+        FakeWeb.register_uri(:post, 'http://foo:bar@twitter.com/create', :string => "created")
       end
 
       should "verify the authentication type correctly" do
@@ -27,11 +27,11 @@ class UtilsTest < Test::Unit::TestCase
       end
       
       should "do a request correctly" do
-        assert_equal "response", @tuiter_request.request(:get, 'http://www.twitter.com').body
+        assert_equal "response", @tuiter_request.request(:get, 'http://twitter.com').body
       end
       
       should "return 401 when user is not authenticated" do
-        assert_equal "401", @tuiter_request.request(:get, 'http://www.twitter.com/secret').code
+        assert_equal "401", @tuiter_request.request(:get, 'http://twitter.com/secret').code
       end
       
       should "do a get" do
@@ -39,17 +39,17 @@ class UtilsTest < Test::Unit::TestCase
       end
       
       should "do a post" do
-        FakeWeb.register_uri(:post, 'http://foo:bar@www.twitter.com/create', :string => "created")
+        FakeWeb.register_uri(:post, 'http://foo:bar@twitter.com/create', :string => "created")
         assert_equal "created", @tuiter_request.post('/create', "status=some_status").body
       end
       
       should "do a put" do
-        FakeWeb.register_uri(:any, 'http://foo:bar@www.twitter.com/change', :string => "changed")
+        FakeWeb.register_uri(:any, 'http://foo:bar@twitter.com/change', :string => "changed")
         assert_equal "changed", @tuiter_request.put('/change', :status => "some_status").body
       end
       
       should "do a delete" do
-        FakeWeb.register_uri(:delete, 'http://foo:bar@www.twitter.com/delete', :string => "deleted")
+        FakeWeb.register_uri(:delete, 'http://foo:bar@twitter.com/delete', :string => "deleted")
         assert_equal "deleted", @tuiter_request.delete('/delete').body
       end
       
