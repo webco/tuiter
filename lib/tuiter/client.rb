@@ -19,6 +19,14 @@ module Tuiter
       end
       log("initialize()")
     end
+    
+    def request_oauth_token
+      @request_handler.request_token
+    end
+    
+    def authorize(token, secret)
+      @request_handler.authorize(token, secret)
+    end
 
     private
     def parse_options(options)
