@@ -14,7 +14,7 @@ module Tuiter
   module AccountMethods
     
     def account_verify_credentials?
-      if res = request("http://twitter.com/account/verify_credentials.json")
+      if res = @request_handler.get("/account/verify_credentials.json").body
         return Tuiter::UserExtended.new(JSON.parse(res))
       else
         return nil
@@ -22,7 +22,7 @@ module Tuiter
     end
     
     def account_rate_limit_status
-      if res = request("http://twitter.com/account/rate_limit_status.json")
+      if res = @request_handler.get("/account/rate_limit_status.json").body
         return Tuiter::RateLimit.new(JSON.parse(res))
       else
         return nil

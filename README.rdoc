@@ -37,6 +37,43 @@ source part out.
 There are (or at least we want to add :-) another examples in the examples/ 
 folder.
 
+== Using OAuth
+
+	require 'tuiter'
+	client = Tuiter::Client.new(:authentication => :oauth, :consumer_key => 'YOUR_KEY', :consumer_secret => 'YOUR_SECRET')
+
+	# request token from Twitter
+	rtoken = client.request_token
+	# waits for token
+	# stores token and secret
+	token, secret = rtoken.token, rtoken.secret   # you could store this on session, db, etc
+	
+	# redirect to authorize url
+	rtoken.authorize_url
+	# user authenticate in twitter domains
+	
+	# the code below goes in the callback accessed by Twitter
+	access_token = client.authorize(token,secret)
+	# checks if everything's ok
+	if client.authorized?
+	  # have fun
+	  15.times do
+	    client.update('All work and no play makes Jack a dull boy')
+	  end
+	end
+	
+If you already have the token and secret of the user (from database, for example), you just have to do the following to authenticate them:
+
+	client = Tuiter::Client.new(:authentication => :oauth, :consumer_key => 'YOUR_KEY', :consumer_secret => 'YOUR_SECRET', :token => token, :secret => secret)
+	if client.authorized?
+	  # have fun
+	  15.times do
+	    client.update('All work and no play makes Jack a dull boy')
+	  end
+	end
+
+Register your Twitter client at http://twitter.com/oauth_clients
+
 == Roadmap and TO-DO list
 
 Check out the library roadmap and to-do list

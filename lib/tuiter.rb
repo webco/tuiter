@@ -2,11 +2,18 @@ require 'open-uri'
 require 'uri'
 require 'net/http'
 require 'logger'
+require 'oauth'
 
 require 'json'
 
 libdir = File.dirname(__FILE__)
 $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
+
+# some constants
+TWITTER_API_BASE_URL = "http://twitter.com"
+
+# Utils
+require 'tuiter/utils'
 
 # Tuiter API methods modules
 require 'tuiter/methods/status'
@@ -24,4 +31,3 @@ require 'tuiter/data/direct_message'
 
 # Tuiter client and end points
 require 'tuiter/client'
-

@@ -9,11 +9,7 @@ module Tuiter
 
     def friendships_create(user, follow = nil)
       log("friendship_new() following: #{user}")
-      url = URI.parse("http://twitter.com/friendships/create/#{user}.json")
-      req = Net::HTTP::Post.new(url.path)
-      req.basic_auth @username, @password
-      req.set_form_data({'follow'=>"true"}) if follow
-      res = new_http_for(url).start {|http| http.request(req) }
+      res = @request_handler.post("/friendships/create/#{user}.json", (follow ? {'follow'=>"true"} : "" ))
       case res
       when Net::HTTPSuccess, Net::HTTPRedirection
         log("friendship_new() success: OK")
@@ -24,12 +20,9 @@ module Tuiter
       end
     end
 
-    def friendships_destroy(user, follow = nil)
+    def friendships_destroy(user)
       log("friendship_new() following: #{user}")
-      url = URI.parse("http://twitter.com/friendships/destroy/#{user}.json")
-      req = Net::HTTP::Post.new(url.path)
-      req.basic_auth @username, @password
-      res = new_http_for(url).start {|http| http.request(req) }
+      res = @request_handler.post("/friendships/destroy/#{user}.json")
       case res
       when Net::HTTPSuccess, Net::HTTPRedirection
         log("remove_friendship() success: OK")
@@ -41,7 +34,7 @@ module Tuiter
     end
     
     def friendships_exists?(id)
-      if res = request("http://twitter.com/friendships/exists.json?user_a=#{id}&user_b=#{@username}")
+      if res = @request_handler.get("http://twitter.com/friendships/exists.json?user_a=#{id}&user_b=#{@username}").body
         return true if res == "true"
         return false
       else
