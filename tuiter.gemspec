@@ -53,5 +53,5 @@ Gem::Specification.new do |s|
  s.summary = "Yet another Twitter API wrapper library in Ruby"
  s.description = "Yet another Twitter API wrapper library in Ruby"
  s.add_dependency "json", ">= 1.1"
- s.add_dependency 'oauth', '>= 0.3'
+ s.add_dependency 'oauth', '>= 0.3.1'
 end
