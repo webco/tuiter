@@ -1,3 +1,10 @@
+== v0.0.6
+  * Added OAuth support
+  * Http Basic Authentication is still supported and old users won't need to change any code base
+  * gem refactoring, now the HTTP Requests handling is centralized in one object
+  * tests for utils and client
+  * documentation upgrade for OAuth
+
 == v0.0.5
   * Version bump and gemspec update
   * Improvements on parse_options

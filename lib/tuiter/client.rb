@@ -13,6 +13,7 @@ module Tuiter
       @logger = options[:logger] || Logger.new('tuiter.log')
       begin
         authentication_type = options.delete(:authentication)
+        authentication_type = :basic if authentication_type.nil?
         @request_handler = Tuiter::Request.new(authentication_type, options)
       rescue
         return nil
