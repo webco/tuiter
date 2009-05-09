@@ -1,3 +1,8 @@
+== v0.0.7
+  * Updated User object. It no longer has Basic and Extended versions
+  * Small bugfix, to make username avaliable thru all Tuiter::CLient objects
+  * friends/ids API call implemented
+
 == v0.0.6
   * Added OAuth support
   * Http Basic Authentication is still supported and old users won't need to change any code base

@@ -2,7 +2,7 @@
 # RUN: 'rake gemify'
 
 Gem::Specification.new do |s|
- s.date = "2009-05-03"
+ s.date = "2009-05-09"
  s.authors = ["Manoel Lemos", "WebCo Internet"]
  s.require_paths = ["lib"]
  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -46,12 +46,12 @@ Gem::Specification.new do |s|
  "test/unit/user_test.rb",
  "test/unit/utils_test.rb"]
  s.email = "opensource@webcointernet.com"
- s.version = "0.0.6"
+ s.version = "0.0.7"
  s.homepage = "http://github.com/webco/tuiter"
  s.rubyforge_project = "tuiter"
  s.name = "tuiter"
  s.summary = "Yet another Twitter API wrapper library in Ruby"
  s.description = "Yet another Twitter API wrapper library in Ruby"
  s.add_dependency "json", ">= 1.1"
- s.add_dependency 'oauth', '>= 0.3.1'
+ s.add_dependency 'oauth', '>= 0.3.4'
 end
