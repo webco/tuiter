@@ -1,6 +1,6 @@
 module Tuiter
 
-  class UserBasic
+   class User
     attr_accessor :id
     attr_accessor :name
     attr_accessor :screen_name
@@ -10,24 +10,6 @@ module Tuiter
     attr_accessor :url
     attr_accessor :protected
     attr_accessor :followers_count
-
-    def initialize(data = nil)
-      unless data.nil?
-        @id = data["id"]
-        @name = data["name"]
-        @screen_name = data["screen_name"]
-        @location = data["location"]
-        @description = data["description"]
-        @profile_image_url = data["profile_image_url"]
-        @url = data["url"]
-        @protected = data["protected"]
-        @followers_count = data["followers_count"]
-      end
-    end
-
-  end
-
-  class UserExtended < UserBasic
     attr_accessor :profile_background_color
     attr_accessor :profile_text_color
     attr_accessor :profile_link_color
@@ -40,13 +22,22 @@ module Tuiter
     attr_accessor :time_zone
     attr_accessor :profile_background_image_url
     attr_accessor :profile_background_tile
-    attr_accessor :following
-    attr_accessor :notifications
     attr_accessor :statuses_count
+    attr_accessor :notifications
+    attr_accessor :following
+    attr_accessor :status
 
     def initialize(data = nil)
       unless data.nil?
-        super(data)
+        @id = data["id"]
+        @name = data["name"]
+        @screen_name = data["screen_name"]
+        @location = data["location"]
+        @description = data["description"]
+        @profile_image_url = data["profile_image_url"]
+        @url = data["url"]
+        @protected = data["protected"]
+        @followers_count = data["followers_count"]
         @profile_background_color = data["profile_background_color"]
         @profile_text_color = data["profile_text_color"]
         @profile_link_color = data["profile_link_color"]
@@ -59,23 +50,12 @@ module Tuiter
         @time_zone = data["time_zone"]
         @profile_background_image_url = data["profile_background_image_url"]
         @profile_background_tile = data["profile_background_tile"]
-        @following = data["following"]
-        @notifications = data["notifications"]
         @statuses_count = data["statuses_count"].to_i
+        @notifications = data["notifications"]
+        @following = data["following"]
+        @status = StatusBasic.new(data["status"])
       else
         @created_at = DateTime.now
-      end
-    end
-
-  end
-
-   class User < UserBasic
-    attr_accessor :status
-
-    def initialize(data=nil)
-      unless data.nil?
-        super(data)
-        @status = StatusBasic.new(data["status"])
       end
     end
 
