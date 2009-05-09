@@ -33,8 +33,8 @@ module Tuiter
     def initialize(data = nil)
       unless data.nil?
         super(data)
-        @sender = UserBasic.new(data['sender'])
-        @recipient = UserBasic.new(data['recipient'])
+        @sender = User.new(data['sender'])
+        @recipient = User.new(data['recipient'])
       end
     end
 

@@ -1,6 +1,6 @@
 # Direct Message Methods
 # [X] direct_messages
-# [ ] direct_messages/sent
+# [X] direct_messages/sent
 # [X] direct_messages/new
 # [ ] direct_messages/destroy
 

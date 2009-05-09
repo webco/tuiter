@@ -47,7 +47,7 @@ module Tuiter
     
     def users_show(id)
       if res = @request_handler.get("http://twitter.com/users/show/#{id}.json").body
-        return Tuiter::UserExtended.new(JSON.parse(res))
+        return Tuiter::User.new(JSON.parse(res))
       else
         return nil
       end

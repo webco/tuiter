@@ -15,7 +15,7 @@ module Tuiter
     
     def account_verify_credentials?
       if res = @request_handler.get("/account/verify_credentials.json").body
-        return Tuiter::UserExtended.new(JSON.parse(res))
+        return Tuiter::User.new(JSON.parse(res))
       else
         return nil
       end
