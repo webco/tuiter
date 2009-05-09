@@ -1,5 +1,5 @@
 # Social Graph Methods
-# [ ] friends/ids
+# [X] friends/ids
 # [X] followers/ids
 
 module Tuiter
@@ -14,6 +14,13 @@ module Tuiter
       end
     end
 
+    def friends_ids 
+      if res = @request_handler.get("http://twitter.com/friends/ids/#{username}.json").body
+        return JSON.parse(res)
+      else
+        return nil
+      end
+    end
   end
 
 end
