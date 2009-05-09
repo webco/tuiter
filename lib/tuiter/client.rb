@@ -7,7 +7,7 @@ module Tuiter
     include Tuiter::FriendshipMethods
     include Tuiter::SocialGraphMethods
     include Tuiter::AccountMethods
-    
+   
     def initialize(options = {})
       @pid = Process.pid
       @logger = options[:logger] || Logger.new('tuiter.log')
@@ -31,7 +31,16 @@ module Tuiter
 
     def authorized?
       oauth_response = @request_handler.get('/account/verify_credentials.json')
-      return oauth_response.class == Net::HTTPOK
+      if oauth_response.class == Net::HTTPOK
+        @username = JSON.parse(oauth_response.body)[:username]
+        true
+      else
+        false
+      end
+    end
+
+    def username
+      @username ||= account_verify_credentials?.screen_name
     end
 
     private
