@@ -9,7 +9,7 @@ require 'json'
 libdir = File.dirname(__FILE__)
 $LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
 
-# some constants
+# Constants
 TWITTER_API_BASE_URL = "http://twitter.com"
 
 # Utils
@@ -22,6 +22,7 @@ require 'tuiter/methods/direct_message'
 require 'tuiter/methods/friendship'
 require 'tuiter/methods/social_graph'
 require 'tuiter/methods/account'
+require 'tuiter/methods/block'
 
 # Tuiter data structures
 require 'tuiter/data/user'
@@ -31,3 +32,4 @@ require 'tuiter/data/direct_message'
 
 # Tuiter client and end points
 require 'tuiter/client'
+

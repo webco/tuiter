@@ -7,6 +7,7 @@ module Tuiter
     include Tuiter::FriendshipMethods
     include Tuiter::SocialGraphMethods
     include Tuiter::AccountMethods
+    include Tuiter::BlockMethods
    
     def initialize(options = {})
       @pid = Process.pid
