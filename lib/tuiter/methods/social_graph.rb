@@ -1,6 +1,8 @@
 # Social Graph Methods
 # [X] friends/ids
 # [X] followers/ids
+# [ ] add parameters to the friends/ids method
+# [ ] add parameters to the followers/ids method
 
 module Tuiter
 
