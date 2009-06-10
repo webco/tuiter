@@ -1,7 +1,7 @@
 # Status Methods
 # [ ] statuses/public_timeline
 # [ ] statuses/friends_timeline
-# [ ] statuses/user_timeline
+# [X] statuses/user_timeline
 # [X] statuses/show
 # [X] statuses/update
 # [X] statuses/mentions
@@ -10,6 +10,20 @@
 module Tuiter
 
   module StatusMethods
+    
+    def statuses_user(options = {})
+      id  = options.delete(:id)
+      id  = id.nil? ? "" : "/#{id}"
+      url = "/statuses/user_timeline#{id}.json"
+      params = parse_options(options) || ""
+
+      if res = @request_handler.get(url+params).body
+        data = JSON.parse(res)
+        return data.map { |d| Tuiter::Status.new(d) }
+      else
+        return []
+      end
+    end
     
     def statuses_show(id)
       if res = @request_handler.get("/statuses/show/#{id}.json").body
