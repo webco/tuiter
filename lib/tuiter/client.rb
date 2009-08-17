@@ -1,12 +1,14 @@
 module Tuiter
 
   class Client
+    include Tuiter::TimelineMethods
     include Tuiter::StatusMethods
     include Tuiter::UserMethods
     include Tuiter::DirectMessageMethods
     include Tuiter::FriendshipMethods
     include Tuiter::SocialGraphMethods
     include Tuiter::AccountMethods
+    include Tuiter::BlockMethods
    
     def initialize(options = {})
       @pid = Process.pid

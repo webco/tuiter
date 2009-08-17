@@ -1,11 +1,7 @@
 # Status Methods
-# [ ] statuses/public_timeline
-# [ ] statuses/friends_timeline
-# [X] statuses/user_timeline
 # [X] statuses/show
 # [X] statuses/update
-# [X] statuses/mentions
-# [ ] statuses/destroy
+# [X] statuses/destroy
 
 module Tuiter
 
@@ -45,26 +41,10 @@ module Tuiter
         res.error!
       end
     end
-    
-    def statuses_mentions(options = {})
-      query = "/statuses/mentions.json"
-      if options[:since]
-        params = "?since=#{options[:since]}"
-      elsif options[:since_id]
-        params = "?since_id=#{options[:since_id]}"
-      else
-        params = ""
-      end
-      if options[:page]
-        if params == ""
-            params = "?page=#{options[:page]}"
-        else
-            params = params + "&" + "page=#{options[:page]}"
-        end
-      end
-      if res = @request_handler.get(query+params).body
-        data = JSON.parse(res)
-        return data.map { |d| Tuiter::Status.new(d) }
+
+    def statuses_destroy(id)
+      if res = @request_handler.delete("/statuses/destroy/#{id}.json").body
+        return Tuiter::Status.new(JSON.parse(res))
       else
         return nil
       end
