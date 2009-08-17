@@ -1,6 +1,7 @@
 module Tuiter
 
   class Client
+    include Tuiter::TimelineMethods
     include Tuiter::StatusMethods
     include Tuiter::UserMethods
     include Tuiter::DirectMessageMethods

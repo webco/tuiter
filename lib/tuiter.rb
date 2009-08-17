@@ -23,6 +23,7 @@ require 'tuiter/methods/friendship'
 require 'tuiter/methods/social_graph'
 require 'tuiter/methods/account'
 require 'tuiter/methods/block'
+require 'tuiter/methods/timeline'
 
 # Tuiter data structures
 require 'tuiter/data/user'
